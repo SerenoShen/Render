@@ -5,8 +5,8 @@
 /**
  *  接口定义：
  *
- *  render(root | selector, data) : void
- *      -- 页面渲染函数, 通过 data 提供的数据，以 root 为根节点进行页面渲染
+ *  render(parent | selector, data) : void
+ *      -- 页面渲染函数, 通过 data 提供的数据进行页面渲染
  *
  *  css(ele | selector, stylesheet) : void
  *      -- 为 ele 指定的节点设置样式,样式规则由 stylesheet 对象指定
@@ -55,37 +55,60 @@
 
     };
 
+    Vray.render = render;
 
-    function render(target, node, data){
+
+    // Start : Function Realize
+
+    var nodeTemplate = '<{{nodeType}}>{{text}}</{{nodeType}}>';
+
+    function render( parent, data ){
+        var
+            node = nodeTemplate.replace(/{{nodeType}}/g, data['nodeType'].toLowerCase())
+                .replace(/{{text}}/g, data['text']),
+            i = 0,
+            len = data.children.length;
+
+        parent = $(parent || 'body');
+
+        node = $(node);
+        node.attr(data['nodeAttribute']);
+        node.css(data['nodeStyle']);
+        parent.append(node);
+
+        if (len < 0) return;
+
+        for (i; i < len; i++){
+            render(node, data.children[i]);
+        }
+    }
+
+    function css( target, stylesheet ){
 
     }
 
-    function css(target, stylesheet){
+    function bind( target, handler ){
 
     }
 
-    function bind(target, handler){
+    function unbind( target, handler ){
 
     }
 
-    function unbind(target, handler){
+    function update( target, data ){
 
     }
 
-    function update(target, data){
+    function setAttr( target, attr ){
 
     }
 
-    function setAttr(target, attr){
-
-    }
-
-    function getAttr(target, attr){
+    function getAttr( target, attr ){
 
     }
 
 
-    function createNode(nodeType, nodeStyle, data){
+    function createNode( nodeType, nodeStyle, nodeAttr, data ){
 
     }
 
