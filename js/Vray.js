@@ -36,26 +36,23 @@
 
         version : '0.0.1',
 
-        constructor : Vray,
-
-        /* declare public function */
-        render : render,
-
-        css : css,
-
-        bind : bind,
-
-        unbind : unbind,
-
-        update : update,
-
-        setAttr : setAttr,
-
-        getAttr : getAttr
-
+        constructor : Vray
     };
 
     Vray.render = render;
+
+    Vray.css = css;
+
+    Vray.bind = bind;
+
+    Vray.unbind = unbind;
+
+    Vray.update = update;
+
+    Vray.setAttr =  setAttr;
+
+    Vray.getAttr = getAttr;
+
 
 
     // Start : Function Realize
