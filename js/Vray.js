@@ -29,6 +29,8 @@
 
 (function (){
 
+    'use strict';
+
     function Vray(){
 
     }
@@ -39,8 +41,109 @@
         constructor : 'Vray'
     };
 
+    // declare public function name
+    var
+        render,
+        css,
+        bind,
+        unbind,
+        update,
+        setAttr,
+        getAttr,
+        extend;
+
+    /* Start : realize public function */
+
+    render = function ( parent, data ){
+
+    };
+
+    css = function ( target, styles ){
+
+    };
+
+    bind = function ( target, handler ){
+
+    };
+
+    unbind = function ( target, handler ){
+
+    };
+
+    update = function ( target, handler ){
+
+    };
+
+    setAttr = function ( target, attributes ){
+
+    };
+
+    getAttr = function ( target, attributes ){
+
+    };
+
+    extend = function (){
+
+        var target = arguments[1] || this,
+            src = arguments[0],
+            prop, temp, clone, propType;
+
+        for ( prop in src ){
+
+            temp = src[ prop ];
+
+            // 减少函数栈的开销
+            propType = type(temp);
+
+            if (temp && propType === 'Array' || propType === 'Object' ){
+                if ( propType === 'Array' ) {
+                    clone = [];
+
+                } else {
+                    clone = {};
+                }
+                // 覆盖性扩展(覆盖原对象中的同名属性)， 后期需要修改吗？？
+                target[ prop ] = BrowserUtil.extend( temp, clone );
+
+            } else if ( temp !== undefined ) {
+                target[ prop ] = temp;
+            }
+
+        }
+
+        return target;
+    };
+
+    /* End : realize public function  */
+
+    // declare private field
 
 
+    /* Start : realize private util method */
+
+    function type(obj){
+        var typeInfo;
+
+        if (obj == null) return obj + "";
+
+        typeInfo = Object.prototype.toString.call(obj);
+
+        return typeInfo.substring( 8, typeInfo.length - 1 );
+    }
+
+    function isEmptyObject(obj) {
+
+        var prop;
+
+        for ( prop in obj)
+            return false;
+
+        return true;
+    }
+
+    /* End : realize private util method */
+
+    // export module
     if ( typeof define === "function" && define.amd ) {
         define( "vray", [], function() {
             return Vray;
