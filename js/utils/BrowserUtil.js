@@ -47,6 +47,27 @@
         return target;
     };
 
+    function widgetContentHeight(){
+        var
+            element,
+            height,
+            value,
+            xpReg = /^[0-9]+(px|pc|pt|cm|pc|in|mm|ex|em|\%)$/g;
+
+        if ( arguments.length == 1 ){
+            element = arguments[0];
+            height = document.defaultView.getComputedStyle(element, null).height;
+            return height;
+        } else if ( arguments.length == 2 ){
+            element = arguments[0];
+            value = arguments[1];
+            if ( typeof value === 'number')
+                element.style.height = value + 'px';
+            else if ( typeof value === 'string' && value.match(xpReg) !== null )
+                element.style.height = value;
+        }
+    }
+
     function type(obj){
         var typeInfo;
 
