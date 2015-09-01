@@ -18,9 +18,33 @@
     };
 
     BrowserUtil.extend  = BrowserUtil.fn.extend = function (){
-        var target = arguments[0] || {},
-            i = 1,
-            len = arguments.length;
+        var target = arguments[1] || this,
+            src = arguments[0],
+            prop, temp, clone, propType;
+
+        for ( prop in src ){
+
+            temp = src[ prop ];
+
+            propType = type(temp);
+
+            if (temp && propType === 'Array' || propType === 'Object' ){
+                if ( propType === 'Array' ) {
+                    clone = [];
+
+                } else {
+                    clone = {};
+                }
+                // 覆盖性扩展(覆盖原对象中的同名属性)， 后期需要修改吗？？
+                target[ prop ] = BrowserUtil.extend( temp, clone );
+
+            } else if ( temp !== undefined ) {
+                target[ prop ] = temp;
+            }
+
+        }
+
+        return target;
     };
 
     function type(obj){
@@ -50,6 +74,6 @@
         });
     }
 
-    window.browserUtil = BrowserUtil;
+    window.BrowserUtil = BrowserUtil;
 
 })();
