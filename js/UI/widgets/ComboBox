@@ -1,0 +1,69 @@
+BQ.ui.ComboBox = (function(){
+
+    function ComboBox (data){
+
+        this.eventMap = {};
+
+        createComponent();
+    }
+
+    ComboBox.prototype = {
+        addStyle : function (ele, styles){
+            var prop;
+            for ( prop in styles ){
+                if ( styles.hasOwnProperty( prop ) ){
+                    ele.style[ prop ] = styles[ prop ];
+                }
+            }
+        },
+
+        addAttribute : function (ele, attributes){
+            var prop;
+            for ( prop in attributes ){
+                if ( attributes.hasOwnProperty( prop ) ){
+                    ele.setAttribute(prop, attributes[ prop ]);
+                }
+            }
+        },
+
+        addEvent : function (event, callback){
+
+        },
+
+        removeEvent : function (event, callback){
+
+        },
+
+        refresh : function (){
+
+        }
+    };
+
+    function createComponent (parent){
+        parent = parent || document.body;
+
+        var
+            comboBoxDiv = document.createElement('div'),
+            comboBoxHeader = document.createElement('div'),
+            comboBoxBody = document.createElement('div'),
+            headerContent = document.createElement('input'),
+            headerBtn = document.createElement('img');
+
+        this.addAttribute(comboBoxDiv, {'class' : 'comboBox'});
+        this.addAttribute(comboBoxHeader, {'class' : 'comboBox-header'});
+        this.addAttribute(comboBoxBody, {'class' : 'comboBox-body, hide'});
+        this.addAttribute(headerContent, {'type' : 'text'});
+        this.addAttribute(headerBtn, {'src' : '9.png'});
+
+        comboBoxHeader.appendChild(headerContent);
+        comboBoxHeader.appendChild(headerBtn);
+
+        comboBoxDiv.appendChild(comboBoxHeader);
+        comboBoxDiv.appendChild(comboBoxBody);
+
+        parent.appendChild(comboBoxDiv);
+    }
+
+    return ComboBox;
+
+})();

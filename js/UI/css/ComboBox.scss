@@ -1,0 +1,32 @@
+.comboBox {
+  position: relative;
+  min-height: 30px;
+  min-width: 80px;
+
+  .comboBox-header {
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    min-height:30px;
+
+    input[type='text'] {
+      height: 28px;
+      width:85%;
+    }
+
+    img{
+      display: block;
+      height: 28px;
+      width: 15%;
+    }
+  }
+
+  .comboBox-body {
+    position: absolute;
+    top:30px;
+    left:0;
+    width: inherit;
+    min-width: 80px;
+  }
+}
